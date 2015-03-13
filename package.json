@@ -18,6 +18,7 @@
   "homepage": "https://github.com/binary-com/going-up",
   "devDependencies": {
     "babelify": "^5.0.4",
+    "browserify": "^9.0.3",
     "gulp": "^3.8.11",
     "gulp-babel": "^4.0.0"
   }
