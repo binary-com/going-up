@@ -1,0 +1,24 @@
+{
+  "name": "going-up",
+  "version": "1.0.0",
+  "description": "**Going Up! is a Cordova app which demonstrates key aspects of the Binary.com API.**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binary-com/going-up.git"
+  },
+  "author": "Boris Yankov <borisyankov@gmail.com> (https://github.com/borisyankov)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/binary-com/going-up/issues"
+  },
+  "homepage": "https://github.com/binary-com/going-up",
+  "devDependencies": {
+    "babelify": "^5.0.4",
+    "gulp": "^3.8.11",
+    "gulp-babel": "^4.0.0"
+  }
+}
