@@ -1,24 +1,30 @@
-var gulp = require("gulp");
-var babel = require("gulp-babel");
+var gulp = require('gulp');
+var browserify = require('browserify');
+var through2 = require('through2');
+var babelify = require('babelify');
+var rename = require('gulp-rename');
+var sourcemaps = require("gulp-sourcemaps");
 
+gulp.task('default', function() {
+    return gulp.src('./js/app2.js')
+        .pipe(sourcemaps.init())
+        .pipe(through2.obj(function(file, enc, next) {
+            browserify(file.path, {
+                    debug: process.env.NODE_ENV === 'development'
+                })
+                .transform(babelify)
+                .bundle(function(err, res) {
+                    if (err) return next(err);
 
-var fs = require("fs");
-var browserify = require("browserify");
-var babelify = require("babelify");
-
-
-gulp.task("default", function() {
-
-    browserify({
-            debug: true
+                    file.contents = res;
+                    next(null, file);
+                });
+        }))
+        .on('error', function(error) {
+            console.log(error.stack);
+            this.emit('end');
         })
-        .transform(babelify)
-        .require("js/app2.js", {
-            entry: true
-        })
-        .bundle()
-        .on("error", function(err) {
-            console.log("Error: " + err.message);
-        })
-        .pipe(fs.createWriteStream("bundle.js"));
+        .pipe(rename('bundle.js'))
+        .pipe(sourcemaps.write("."))        
+        .pipe(gulp.dest('./dist'));
 });
