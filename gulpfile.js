@@ -5,6 +5,10 @@ var babelify = require('babelify');
 var rename = require('gulp-rename');
 var sourcemaps = require("gulp-sourcemaps");
 
+var paths = {
+    js: './js/**/*.js'
+};
+
 gulp.task('default', function() {
     return gulp.src('./js/app2.js')
         .pipe(sourcemaps.init())
@@ -24,7 +28,11 @@ gulp.task('default', function() {
             console.log(error.stack);
             this.emit('end');
         })
-        .pipe(rename('bundle.js'))
-        .pipe(sourcemaps.write("."))        
+        .pipe(rename('app.js'))
+        .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('watch', function() {
+    gulp.watch(paths.js, ['default']);
 });
