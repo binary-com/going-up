@@ -56,141 +56,141 @@ function buy() {
 
 // Markets Discovery
 export function getMarketsList() {
-    return fetch(`${apiRoot}/markets/`, apiOtions);
+    return fetch(`${apiRoot}/markets/`, apiOptions);
 }
 
 // Symbols for Market
 export function getMarket(market) {
-    return fetch(`${apiRoot}/markets/${market}`, apiOtions);
+    return fetch(`${apiRoot}/markets/${market}`, apiOptions);
 }
 
 // Exchanges Discovery
 export function getExchangesList() {
-    return fetch(`${apiRoot}/exchanges/`, apiOtions);
+    return fetch(`${apiRoot}/exchanges/`, apiOptions);
 }
 
 // Exchange Details
 export function getExchange(exchange) {
-    return fetch(`${apiRoot}/exchanges/${exchange}`, apiOtions);
+    return fetch(`${apiRoot}/exchanges/${exchange}`, apiOptions);
 }
 
 // Symbols Discovery ///////////////////////////////////////////////////////////
 
 // Symbols Discovery
 export function getSymbolsList() {
-    return fetch(`${apiRoot}/symbols/`, apiOtions);
+    return fetch(`${apiRoot}/symbols/`, apiOptions);
 }
 
 // Symbol Detail
 export function getSymbol(symbol) {
-    return fetch(`${apiRoot}/symbols/${symbols}`, apiOtions);
+    return fetch(`${apiRoot}/symbols/${symbols}`, apiOptions);
 }
 
 // Symbol Price
 export function getSymbolPrice(symbol) {
-    return fetch(`${apiRoot}/symbols/${symbols}/price`, apiOtions);
+    return fetch(`${apiRoot}/symbols/${symbols}/price`, apiOptions);
 }
 
 // Price History ///////////////////////////////////////////////////////////////
 
 // Historical Tick Data
 export function getTickData(symbol) {
-    return fetch(`${apiRoot}/symbols/${symbol}/ticks`, apiOtions);
+    return fetch(`${apiRoot}/symbols/${symbol}/ticks`, apiOptions);
 }
 
 // Historical Candlestick Data
 export function getCandlestickData(symbol) {
-    return fetch(`${apiRoot}/symbols/${symbol}/candles`, apiOtions);
+    return fetch(`${apiRoot}/symbols/${symbol}/candles`, apiOptions);
 }
 
 // Contract Discovery //////////////////////////////////////////////////////////
 
 // Available Contracts for Symbol
 export function getContracts(symbol) {
-    return fetch(`${apiRoot}/symbols/${symbol}/contracts`, apiOtions);
+    return fetch(`${apiRoot}/symbols/${symbol}/contracts`, apiOptions);
 }
 
 // Offerings Discovery
 export function getOfferingsList() {
-    return fetch(`${apiRoot}/offerings`, apiOtions);
+    return fetch(`${apiRoot}/offerings`, apiOptions);
 }
 
 // Contract Categories for Market
 export function getContractCategories(market) {
-    return fetch(`${apiRoot}/markets/${market}/contract_categories`, apiOtions);
+    return fetch(`${apiRoot}/markets/${market}/contract_categories`, apiOptions);
 }
 
 // Contract Negotiation ////////////////////////////////////////////////////////
 
 // Payout Currencies
 export function getPayoutCurrencies() {
-    return fetch(`${apiRoot}/payout_currencies`, apiOtions);
+    return fetch(`${apiRoot}/payout_currencies`, apiOptions);
 }
 
 // Get Contract Price
 export function getContractPrice(contractType, symbol, durationUnit, duration, payoutCurrency, payout, startTime, barrierLow, barrierHigh) {
-    return fetch(`${apiRoot}/contract/${contractType}/${symbol}/${durationUnit}/${duration}/${payoutCurrency}/${payout}/${startTime}/${barrierLow}/${barrierHigh}`, apiOtions);
+    return fetch(`${apiRoot}/contract/${contractType}/${symbol}/${durationUnit}/${duration}/${payoutCurrency}/${payout}/${startTime}/${barrierLow}/${barrierHigh}`, apiOptions);
 }
 
 // Buy Contract
 export function buyContract(contractType, symbol, durationUnit, duration, payoutCurrency, payout, startTime, barrierLow, barrierHigh) {
     apiOtions.method = 'post';
-    return fetch(`${apiRoot}/contract/${contractType}/${symbol}/${durationUnit}/${duration}/${payoutCurrency}/${payout}/${startTime}/${barrierLow}/${barrierHigh}`, apiOtions);
+    return fetch(`${apiRoot}/contract/${contractType}/${symbol}/${durationUnit}/${duration}/${payoutCurrency}/${payout}/${startTime}/${barrierLow}/${barrierHigh}`, apiOptions);
 }
 
 // Portfolio ///////////////////////////////////////////////////////////////////
 
 // Portfolio List
 export function getPortfolioList() {
-    return fetch(`${apiRoot}/portfolio`, apiOtions);
+    return fetch(`${apiRoot}/portfolio`, apiOptions);
 }
 
 // Portfolio Detail
 export function getPortfolio(contract) {
-    return fetch(`${apiRoot}/portfolio/${contract}`, apiOtions);
+    return fetch(`${apiRoot}/portfolio/${contract}`, apiOptions);
 }
 
 // Sell Existing Contract
 export function sellContract(contract, price) {
-    return fetch(`${apiRoot}/portfolio/${contract}/sell/${price}`, apiOtions);
+    return fetch(`${apiRoot}/portfolio/${contract}/sell/${price}`, apiOptions);
 }
 
 // Account Management //////////////////////////////////////////////////////////
 
 // Account Detail
 export function getAccount(contract) {
-    return fetch(`${apiRoot}/account`, apiOtions);
+    return fetch(`${apiRoot}/account`, apiOptions);
 }
 
 // Account Update
 export function updateAccount(account) {
     apiOtions.method = 'post';
     apiOtions.body = account;
-    return fetch(`${apiRoot}/account`, apiOtions);
+    return fetch(`${apiRoot}/account`, apiOptions);
 }
 
 // Account Creation
 export function createAccount(account) {
     apiOtions.method = 'post';
     apiOtions.body = account;
-    return fetch(`${apiRoot}/new_account`, apiOtions);
+    return fetch(`${apiRoot}/new_account`, apiOptions);
 }
 
 // Account /////////////////////////////////////////////////////////////////////
 
 // Statement
 export function getStatement() {
-    return fetch(`${apiRoot}/account/statement`, apiOtions);
+    return fetch(`${apiRoot}/account/statement`, apiOptions);
 }
 
 // Countries
 export function getCountries() {
-    return fetch(`${apiRoot}/countries`, apiOtions);
+    return fetch(`${apiRoot}/countries`, apiOptions);
 }
 
 
 
 
 export function symbol(symbolId) {
-    return fetch(apiRoot + '/symbols/' + symbolId.replace(/\//g, '-'), apiOtions);
+    return fetch(apiRoot + '/symbols/' + symbolId.replace(/\//g, '-'), apiOptions);
 }

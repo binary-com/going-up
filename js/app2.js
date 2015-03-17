@@ -1,6 +1,6 @@
 import * as api from './api';
 
-api.markets().then(function(response) {
+api.getMarketsList().then(function(response) {
     return response.json();
 }).then(function(json) {
     console.log('parsed json', json);
