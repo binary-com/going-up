@@ -1,4 +1,7 @@
 let apiRoot = 'https://rmg-prod.apigee.net/v1/binary';
+let apiOptions = {
+    mode: 'cors'
+};
 
 function authorize() {
     var loginUrl = apiRoot `/oauth/authorize
@@ -49,32 +52,145 @@ function buy() {
     quote_or_buy('POST');
 }
 
-export function markets() {
-    return fetch(apiRoot + '/markets', {
-        mode: 'cors'
-    });
+// Marketplace Discovery ///////////////////////////////////////////////////////
+
+// Markets Discovery
+export function getMarketsList() {
+    return fetch(`${apiRoot}/markets/`, apiOtions);
 }
 
-export function account() {
-    return fetch(apiRoot + '/account', {
-        mode: 'cors'
-    });
+// Symbols for Market
+export function getMarket(market) {
+    return fetch(`${apiRoot}/markets/${market}`, apiOtions);
 }
 
-export function portfolio() {
-    return fetch(apiRoot + '/portfolio', {
-        mode: 'cors'
-    });
+// Exchanges Discovery
+export function getExchangesList() {
+    return fetch(`${apiRoot}/exchanges/`, apiOtions);
 }
 
-export function symbols(sym) {
-    return fetch(apiRoot + '/offerings?contract_category=Rise%2FFall&is_forward_starting=N&expiry_type=intraday', {
-        mode: 'cors'
-    });
+// Exchange Details
+export function getExchange(exchange) {
+    return fetch(`${apiRoot}/exchanges/${exchange}`, apiOtions);
 }
 
-export function symbol(sym) {
-    return fetch(apiRoot + '/symbols/' + sym.replace(/\//g, '-'), {
-        mode: 'cors'
-    });
+// Symbols Discovery ///////////////////////////////////////////////////////////
+
+// Symbols Discovery
+export function getSymbolsList() {
+    return fetch(`${apiRoot}/symbols/`, apiOtions);
+}
+
+// Symbol Detail
+export function getSymbol(symbol) {
+    return fetch(`${apiRoot}/symbols/${symbols}`, apiOtions);
+}
+
+// Symbol Price
+export function getSymbolPrice(symbol) {
+    return fetch(`${apiRoot}/symbols/${symbols}/price`, apiOtions);
+}
+
+// Price History ///////////////////////////////////////////////////////////////
+
+// Historical Tick Data
+export function getTickData(symbol) {
+    return fetch(`${apiRoot}/symbols/${symbol}/ticks`, apiOtions);
+}
+
+// Historical Candlestick Data
+export function getCandlestickData(symbol) {
+    return fetch(`${apiRoot}/symbols/${symbol}/candles`, apiOtions);
+}
+
+// Contract Discovery //////////////////////////////////////////////////////////
+
+// Available Contracts for Symbol
+export function getContracts(symbol) {
+    return fetch(`${apiRoot}/symbols/${symbol}/contracts`, apiOtions);
+}
+
+// Offerings Discovery
+export function getOfferingsList() {
+    return fetch(`${apiRoot}/offerings`, apiOtions);
+}
+
+// Contract Categories for Market
+export function getContractCategories(market) {
+    return fetch(`${apiRoot}/markets/${market}/contract_categories`, apiOtions);
+}
+
+// Contract Negotiation ////////////////////////////////////////////////////////
+
+// Payout Currencies
+export function getPayoutCurrencies() {
+    return fetch(`${apiRoot}/payout_currencies`, apiOtions);
+}
+
+// Get Contract Price
+export function getContractPrice(contractType, symbol, durationUnit, duration, payoutCurrency, payout, startTime, barrierLow, barrierHigh) {
+    return fetch(`${apiRoot}/contract/${contractType}/${symbol}/${durationUnit}/${duration}/${payoutCurrency}/${payout}/${startTime}/${barrierLow}/${barrierHigh}`, apiOtions);
+}
+
+// Buy Contract
+export function buyContract(contractType, symbol, durationUnit, duration, payoutCurrency, payout, startTime, barrierLow, barrierHigh) {
+    apiOtions.method = 'post';
+    return fetch(`${apiRoot}/contract/${contractType}/${symbol}/${durationUnit}/${duration}/${payoutCurrency}/${payout}/${startTime}/${barrierLow}/${barrierHigh}`, apiOtions);
+}
+
+// Portfolio ///////////////////////////////////////////////////////////////////
+
+// Portfolio List
+export function getPortfolioList() {
+    return fetch(`${apiRoot}/portfolio`, apiOtions);
+}
+
+// Portfolio Detail
+export function getPortfolio(contract) {
+    return fetch(`${apiRoot}/portfolio/${contract}`, apiOtions);
+}
+
+// Sell Existing Contract
+export function sellContract(contract, price) {
+    return fetch(`${apiRoot}/portfolio/${contract}/sell/${price}`, apiOtions);
+}
+
+// Account Management //////////////////////////////////////////////////////////
+
+// Account Detail
+export function getAccount(contract) {
+    return fetch(`${apiRoot}/account`, apiOtions);
+}
+
+// Account Update
+export function updateAccount(account) {
+    apiOtions.method = 'post';
+    apiOtions.body = account;
+    return fetch(`${apiRoot}/account`, apiOtions);
+}
+
+// Account Creation
+export function createAccount(account) {
+    apiOtions.method = 'post';
+    apiOtions.body = account;
+    return fetch(`${apiRoot}/new_account`, apiOtions);
+}
+
+// Account /////////////////////////////////////////////////////////////////////
+
+// Statement
+export function getStatement() {
+    return fetch(`${apiRoot}/account/statement`, apiOtions);
+}
+
+// Countries
+export function getCountries() {
+    return fetch(`${apiRoot}/countries`, apiOtions);
+}
+
+
+
+
+export function symbol(symbolId) {
+    return fetch(apiRoot + '/symbols/' + symbolId.replace(/\//g, '-'), apiOtions);
 }
